@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ink-50);font-family:var(--font-sans)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .card{background:#fff;border:1px solid var(--border-default);border-radius:20px;padding:15px}
+  .note{background:var(--warning-bg);border-radius:0;padding:15px;box-shadow:var(--shadow-xs);backdrop-filter:blur(10px)}
+  .bubble{background:var(--cream-deep);color:#fff;border-radius:20px;padding:15px;box-shadow:var(--shadow-xs)}
+  .title{font-size:14px;font-weight:500;margin:0 0 6px;color:var(--fg-1)}
+  .bubble .title{color:#fff}
+  .body{font-size:12px;color:var(--fg-2);margin:0;line-height:18px}
+  .bubble .body{color:rgba(255,255,255,.75)}
+  .mono{font-family:var(--font-mono);font-size:11px;color:var(--fg-1);margin:0}
+</style></head>
+<body>
+<div class="grid">
+  <div class="card">
+    <p class="title">Last scan</p>
+    <p class="body">No issues found. 2h ago.</p>
+  </div>
+  <div class="note">
+    <p class="mono" style="margin-bottom:6px">!</p>
+    <p class="mono">Scan log — collapsed</p>
+  </div>
+  <div class="card" style="grid-column:span 2">
+    <p class="title">Security actions required</p>
+    <p class="body">9 hardening items need your attention. Enable to improve your site's security posture.</p>
+  </div>
+  <div class="bubble" style="grid-column:span 2">
+    <p class="title">Upgrade to Pro</p>
+    <p class="body">Unlock scheduled scans, firewall rules, and audit logs.</p>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WP Defender — UI Kit</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html, body { height: 100%; margin: 0; background: #e8e8ea; }
+  body { display: flex; align-items: center; justify-content: center; padding: 20px; }
+  #tweaks { position: fixed; right: 20px; bottom: 20px; background: #fff; border: 1px solid var(--border-default); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow-md); display: none; font-family: var(--font-sans); font-size: 13px; z-index: 10; }
+  #tweaks h5 { margin: 0 0 8px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-2); font-weight: 500; }
+  #tweaks label { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="tweaks">
+  <h5>Tweaks</h5>
+  <label><input type="checkbox" id="tw-pro"> Pro account</label>
+</div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="Shell.jsx"></script>
+<script type="text/babel" src="Dashboard.jsx"></script>
+<script type="text/babel" src="Views.jsx"></script>
+
+<script type="text/babel">
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "pro": false
+  }/*EDITMODE-END*/;
+
+  function App() {
+    const saved = localStorage.getItem("defender-route") || "dashboard";
+    const [route, setRoute] = React.useState(saved);
+    const [pro, setPro] = React.useState(!!TWEAKS.pro);
+    React.useEffect(() => localStorage.setItem("defender-route", route), [route]);
+
+    // Tweaks wiring
+    React.useEffect(() => {
+      const listener = (e) => {
+        if (e.data?.type === "__activate_edit_mode") document.getElementById("tweaks").style.display = "block";
+        if (e.data?.type === "__deactivate_edit_mode") document.getElementById("tweaks").style.display = "none";
+      };
+      window.addEventListener("message", listener);
+      window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+      const cb = document.getElementById("tw-pro");
+      cb.checked = pro;
+      cb.onchange = (e) => {
+        setPro(e.target.checked);
+        window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { pro: e.target.checked } }, "*");
+      };
+      return () => window.removeEventListener("message", listener);
+    }, [pro]);
+
+    // Scale-to-fit
+    const stageRef = React.useRef(null);
+    React.useEffect(() => {
+      const fit = () => {
+        if (!stageRef.current) return;
+        const pad = 40;
+        const sx = (window.innerWidth - pad) / 1800;
+        const sy = (window.innerHeight - pad) / 990;
+        const s = Math.min(sx, sy, 1);
+        stageRef.current.style.transform = `scale(${s})`;
+      };
+      fit();
+      window.addEventListener("resize", fit);
+      return () => window.removeEventListener("resize", fit);
+    }, []);
+
+    let content;
+    if (route === "dashboard") content = <Dashboard pro={pro} />;
+    else if (route === "hardening") content = <HardeningView />;
+    else if (route === "firewalls") content = <FirewallsView />;
+    else if (route === "audit") content = <SimpleView title="Audit log" sub="Chronological record of security events across your site." />;
+    else if (route === "login") content = <SimpleView title="Login & Access" sub="Two-factor, mask-login, lockouts." />;
+    else if (route === "settings") content = <SimpleView title="Settings" sub="Notifications, data, integrations." />;
+    else content = <IssuesView />;
+
+    return (
+      <div ref={stageRef} style={{ transformOrigin: "center center", transition: "transform 120ms" }}>
+        <Shell route={route} setRoute={setRoute} pro={pro}>{content}</Shell>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

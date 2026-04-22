@@ -1,0 +1,137 @@
+/* =============================================================
+   WP DEFENDER — Colors & Type (by WPMU DEV)
+   Extracted from Product 2025_26.fig
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---------- Brand ---------- */
+  --brand-purple: rgb(87, 30, 231);           /* Primary — Pro / premium accents */
+  --brand-purple-deep: rgb(73, 30, 179);      /* Hover / pressed */
+  --brand-purple-soft: rgba(87, 30, 231, 0.6);
+  --brand-purple-tint: rgba(87, 30, 231, 0.2);
+  --brand-indigo: rgb(71, 99, 228);           /* WP admin header (DefenderWP menu) */
+
+  /* ---------- Greys (the WordPress-admin neutrals that define the UI) ---------- */
+  --ink-900: rgb(9, 9, 9);
+  --ink-800: rgb(26, 26, 26);        /* Primary text / buttons */
+  --ink-700: rgb(34, 34, 34);        /* WP sub-nav background */
+  --ink-600: rgb(45, 51, 56);
+  --ink-500: rgb(102, 102, 102);     /* Secondary text, timestamps */
+  --ink-400: rgb(119, 119, 119);
+  --ink-300: rgb(181, 188, 194);
+  --ink-200: rgb(204, 204, 204);     /* Disabled text / borders */
+  --ink-150: rgb(230, 230, 230);     /* Default border */
+  --ink-100: rgb(242, 242, 242);     /* Notification block bg */
+  --ink-50:  rgb(248, 248, 248);     /* Surface / workspace */
+  --white:   rgb(255, 255, 255);
+  --black:   rgb(0, 0, 0);
+
+  --ink-800-15: rgba(26, 26, 26, 0.15);   /* Input borders */
+  --ink-800-25: rgba(26, 26, 26, 0.25);
+  --ink-800-20: rgba(26, 26, 26, 0.2);
+  --white-40: rgba(255, 255, 255, 0.4);
+  --black-10: rgba(0, 0, 0, 0.1);
+
+  /* ---------- Semantic ---------- */
+  --success: rgb(0, 228, 72);        /* Toggle ON, success states */
+  --success-ink: rgb(0, 89, 255);    /* Info/status blue */
+  --danger:  rgb(215, 0, 21);        /* Critical issue */
+  --danger-10: rgba(215, 0, 21, 0.1);
+  --danger-20: rgba(215, 0, 21, 0.2);
+  --warning: rgb(255, 56, 0);        /* High-priority orange-red */
+  --warning-bg: rgb(255, 253, 193);  /* Yellow note paper */
+  --teal-deep: rgb(0, 69, 81);       /* Accent dark teal */
+  --teal-text: rgb(38, 121, 153);
+  --cream-deep: rgb(74, 19, 0);      /* Bubble bg */
+
+  /* ---------- Tokens (semantic aliases) ---------- */
+  --fg-1: var(--ink-800);            /* Primary body text */
+  --fg-2: var(--ink-500);            /* Secondary */
+  --fg-3: var(--ink-400);
+  --fg-disabled: var(--ink-200);
+  --fg-inverse: var(--white);
+
+  --bg-app: var(--ink-50);           /* Plugin workspace */
+  --bg-surface: var(--white);
+  --bg-subtle: var(--ink-100);
+  --bg-wp-chrome: var(--ink-700);    /* Black WP top bar */
+  --bg-wp-sidebar: var(--black);     /* WP left nav */
+
+  --border-default: var(--ink-150);
+  --border-strong: var(--ink-200);
+  --border-input: var(--ink-800-15);
+
+  /* ---------- Radius ---------- */
+  --r-xs: 2px;
+  --r-sm: 5px;
+  --r-md: 10px;         /* Button (L/R) */
+  --r-lg: 15px;         /* Tooltips */
+  --r-xl: 20px;         /* Cards / notif blocks */
+  --r-2xl: 25px;        /* Workspace container */
+  --r-pill: 1020px;
+  --r-circle: 100px;
+
+  /* ---------- Elevation ---------- */
+  --shadow-xs: 0 0 4px 0 rgba(0, 0, 0, 0.1);     /* Note-paper / bubble */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px 0 rgba(0, 0, 0, 0.12);
+
+  /* ---------- Spacing (4-px grid, but Defender uses 5/10/15/20/30) ---------- */
+  --s-1: 5px;
+  --s-2: 10px;
+  --s-3: 15px;
+  --s-4: 20px;
+  --s-5: 30px;
+  --s-6: 40px;
+  --s-7: 60px;
+
+  /* ---------- Typography ---------- */
+  --font-sans: 'Roboto', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Roboto Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  --fs-11: 11px;   /* Micro copy, timestamps, tags */
+  --fs-12: 12px;   /* Dense UI labels */
+  --fs-14: 14px;   /* Default body — dominant size */
+  --fs-16: 16px;
+  --fs-18: 18px;   /* H4, card titles, button(L) */
+  --fs-20: 20px;
+  --fs-24: 24px;   /* H3 */
+  --fs-32: 32px;   /* H2 */
+  --fs-50: 50px;   /* Display mono (counts, big numerals) */
+  --fs-54: 54px;
+
+  --lh-18: 18px;
+  --lh-22: 22px;
+  --lh-27: 27px;
+
+  /* ---------- Motion ---------- */
+  --ease-std: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-med: 200ms;
+  --dur-slow: 320ms;
+}
+
+/* ============================================================= */
+/* Semantic type (use directly or via @extend-style classes)     */
+/* ============================================================= */
+html, body { font-family: var(--font-sans); color: var(--fg-1); font-size: 14px; line-height: 22px; -webkit-font-smoothing: antialiased; }
+
+.h1 { font-family: var(--font-sans); font-size: 50px; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; color: var(--fg-1); }
+.h2 { font-family: var(--font-sans); font-size: 32px; font-weight: 700; line-height: 1.15; color: var(--fg-1); }
+.h3 { font-family: var(--font-sans); font-size: 24px; font-weight: 700; line-height: 1.25; color: var(--fg-1); }
+.h4 { font-family: var(--font-sans); font-size: 18px; font-weight: 500; line-height: 27px; color: var(--fg-1); }
+.body { font-family: var(--font-sans); font-size: 14px; font-weight: 400; line-height: 22px; color: var(--fg-1); }
+.body-strong { font-family: var(--font-sans); font-size: 14px; font-weight: 500; line-height: 22px; color: var(--fg-1); }
+.caption { font-family: var(--font-sans); font-size: 11px; font-weight: 400; line-height: 18px; letter-spacing: 0.1px; color: var(--fg-2); }
+.micro { font-family: var(--font-sans); font-size: 12px; font-weight: 400; line-height: 18px; color: var(--fg-2); }
+.mono { font-family: var(--font-mono); font-size: 14px; line-height: 22px; color: var(--fg-1); }
+.mono-xl { font-family: var(--font-mono); font-size: 50px; line-height: 1; color: var(--fg-1); }
+.tag  { font-family: var(--font-sans); font-size: 11px; font-weight: 400; line-height: 16px; letter-spacing: 0.1px; }
+
+/* default link treatment — black underline-on-hover */
+a { color: var(--fg-1); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-fast) var(--ease-std); }
+a:hover { border-bottom-color: var(--fg-1); }

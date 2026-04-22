@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Toggles & Tags</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{margin:0;padding:20px;background:#fff;font-family:var(--font-sans)}
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .toggle{width:40px;height:20px;border-radius:100px;position:relative;display:inline-block;cursor:pointer}
+  .toggle::after{content:"";position:absolute;width:16px;height:16px;border-radius:100px;background:#fff;top:2px;left:2px;transition:left var(--dur-med) var(--ease-std)}
+  .toggle.on{background:var(--success)}
+  .toggle.on::after{left:22px}
+  .toggle.off{background:var(--ink-200)}
+  .toggle.dis{background:var(--ink-100)}
+  .toggle.dis::after{background:var(--ink-150)}
+
+  .tag{display:inline-flex;align-items:center;justify-content:center;height:18px;padding:0 7px;border-radius:1020px;font-size:11px;letter-spacing:.1px;line-height:16px;color:#fff}
+  .tag.black{background:var(--ink-800)}
+  .tag.pro{background:radial-gradient(var(--brand-purple) 0%, var(--brand-purple-soft) 100%);border:1px solid var(--brand-purple-tint)}
+  .tag.new{background:var(--success-ink)}
+  .tag.status-danger{background:var(--danger-10);color:var(--danger);border:1px solid var(--danger-20)}
+  .tag.status-ok{background:rgba(0,228,72,.15);color:#067b2a}
+  .label{font-family:var(--font-mono);font-size:10px;color:var(--fg-2);text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px}
+</style></head>
+<body>
+<p class="label">Toggles</p>
+<div class="row">
+  <span class="toggle on"></span>
+  <span class="toggle off"></span>
+  <span class="toggle dis"></span>
+</div>
+<p class="label">Tags</p>
+<div class="row">
+  <span class="tag black">Preview</span>
+  <span class="tag pro">Pro</span>
+  <span class="tag new">New</span>
+  <span class="tag status-danger">2 critical</span>
+  <span class="tag status-ok">Resolved</span>
+</div>
+</body></html>

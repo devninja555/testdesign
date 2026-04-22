@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{margin:0;padding:20px;background:#fff;font-family:var(--font-sans)}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .btn{font-family:var(--font-sans);font-size:14px;font-weight:500;border-radius:10px;padding:0 15px;height:40px;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background var(--dur-fast) var(--ease-std)}
+  .btn.lg{font-size:18px;height:40px}
+  .btn.sm{height:30px;font-size:14px;padding:0 12px}
+  .btn-solid{background:var(--ink-800);color:var(--white)}
+  .btn-solid:hover{background:var(--ink-600)}
+  .btn-line{background:transparent;color:var(--ink-800);border:1px solid var(--ink-800-15)}
+  .btn-line:hover{background:var(--ink-50)}
+  .btn-text{background:transparent;color:var(--ink-800)}
+  .btn-text:hover{text-decoration:underline}
+  .btn-danger{background:var(--danger);color:var(--white)}
+  .btn-solid-w{background:var(--white);color:var(--ink-800);border:1px solid var(--ink-800-15)}
+  .btn[disabled]{background:var(--ink-100);color:var(--ink-200);pointer-events:none}
+  .label{font-family:var(--font-mono);font-size:10px;color:var(--fg-2);text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px}
+</style></head>
+<body>
+<p class="label">Solid (B) · Line (B) · Text (B) · Danger · Disabled</p>
+<div class="row">
+  <button class="btn btn-solid">Scan site</button>
+  <button class="btn btn-line">Cancel</button>
+  <button class="btn btn-text">Learn more</button>
+  <button class="btn btn-danger">Quarantine</button>
+  <button class="btn btn-solid" disabled>Scanning…</button>
+</div>
+<p class="label">Small variants</p>
+<div class="row">
+  <button class="btn btn-solid sm">Activate</button>
+  <button class="btn btn-line sm">Ignore</button>
+  <button class="btn btn-solid-w sm">Revert</button>
+</div>
+</body></html>

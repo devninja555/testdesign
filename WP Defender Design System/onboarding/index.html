@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WP Defender — Onboarding</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #f0eee9; height: 100%; }
+  body { font-family: var(--font-sans); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="../ui_kits/defender/Primitives.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="WPShell.jsx"></script>
+<script type="text/babel" src="Wizard.jsx"></script>
+<script type="text/babel" src="Checklist.jsx"></script>
+<script type="text/babel" src="Conversational.jsx"></script>
+
+<script type="text/babel">
+  // Wizard / Conversational steps persist so reload keeps your place
+  function usePersistedStep(key, max) {
+    const [v, setV] = React.useState(() => {
+      const n = parseInt(localStorage.getItem(key) || "0", 10);
+      return Number.isFinite(n) && n >= 0 && n < max ? n : 0;
+    });
+    React.useEffect(() => { localStorage.setItem(key, String(v)); }, [v, key]);
+    return [v, setV];
+  }
+
+  function WizardWrap() {
+    const [step, setStep] = usePersistedStep("def-wiz-step", 6);
+    return <WizardOnboarding step={step} setStep={setStep} />;
+  }
+  function ConvWrap() {
+    const [step, setStep] = usePersistedStep("def-conv-step", 7);
+    return <ConversationalOnboarding step={step} setStep={setStep} />;
+  }
+
+  function App() {
+    return (
+      <DesignCanvas>
+        <DCSection id="onboarding" title="WP Defender · Onboarding"
+          subtitle="Three directions for the first-install + re-activation flow. Same 6 steps, three moods. Click the expand icon to open any fullscreen.">
+          <DCArtboard id="wizard" label="A · Wizard — step rail + progress" width={1240} height={900}>
+            <WizardWrap />
+          </DCArtboard>
+          <DCArtboard id="checklist" label="B · Checklist — everything on one page" width={1240} height={900}>
+            <ChecklistOnboarding />
+          </DCArtboard>
+          <DCArtboard id="conversational" label="C · Conversational — one card at a time" width={1240} height={900}>
+            <ConvWrap />
+          </DCArtboard>
+        </DCSection>
+
+        <DCPostIt top={40} right={60} rotate={2} width={220}>
+          Tip: grab the ⋮⋮ handle to reorder. Click the ↗ on any artboard to focus it fullscreen — then step through the flow with ← / →.
+        </DCPostIt>
+      </DesignCanvas>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
